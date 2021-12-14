@@ -19,11 +19,11 @@ public:
 	void destroy_entity(Entity entity);
 
 	// Add component to target Entity
-	template<typename ComponentType>
-	void add_component(Entity entity, ComponentType& component)
+	template<typename ComponentType, typename... Args>
+	void add_component(Entity entity, Args&&... args)
 	{
 		ComponentManager<ComponentType>* manager = get_component_manager<ComponentType>();
-		manager->add_component(entity, component);
+		manager->add_component<ComponentType>(entity, args...);
 	}
 
 	// Remove component from target Entity
@@ -36,7 +36,7 @@ public:
 	
 	// Create a handle to manipulate an Entity with
 	template <typename ComponentType>
-	ComponentHandle<ComponentType> create_handle(Entity entity)
+	ComponentHandle<ComponentType> component_handle(Entity entity)
 	{
 		ComponentManager<ComponentType>* manager = get_component_manager<ComponentType>();
 		return ComponentHandle<ComponentType>(entity, manager->get_component(entity), manager);
@@ -44,11 +44,11 @@ public:
 
 	// Add a Component Manager to the World object
 	template<typename ComponentType>
-	void add_component_manager(ComponentManager<ComponentType> manager)
+	void add_component_manager()
 	{
 		const int component_family = get_component_family<ComponentType>();
-		auto it = component_managers.begin() + component_family;
-		component_managers.emplace(it, std::make_unique<ComponentManager<ComponentType>>(manager));
+		const auto it = component_managers.begin() + component_family;
+		component_managers.emplace(it, std::make_unique<ComponentManager<ComponentType>>(ComponentManager<ComponentType>()));
 	}
 
 private:

@@ -1,5 +1,6 @@
 #pragma once
 #include <array>
+#include <vector>
 
 #include "entity.h"
 #include "entity_map.h"
@@ -8,9 +9,8 @@
 template <typename ComponentType>
 struct ComponentData
 {
-	// 0 used as invalid value
-	unsigned int size = 1;
-	std::array<ComponentType, MAX_COMPONENTS_PER_TYPE>* data;
+	unsigned int size = 0;
+	std::vector<ComponentType> data;
 };
 
 class BaseComponentManager
@@ -18,10 +18,6 @@ class BaseComponentManager
 public:
 	BaseComponentManager() = default;
 	virtual ~BaseComponentManager() = default;
-	/*BaseComponentManager(BaseComponentManager&) = default;
-	BaseComponentManager &operator=(BaseComponentManager&) = default;*/
-	/*BaseComponentManager(const BaseComponentManager&) = default;
-	BaseComponentManager &operator=(const BaseComponentManager&) = default;*/
 };
 
 template <typename ComponentType>
@@ -31,18 +27,21 @@ public:
 	// Create a new Component Manager with a specific Component Type
 	ComponentManager()
 	{
-		// Manually allocate a block of data
-		component_data.data = static_cast<std::array<ComponentType, 1024> *>(malloc(sizeof(ComponentType) * 1024));
+		// Reserve memory
+		component_data.data.reserve(MAX_COMPONENTS_PER_TYPE);
 	}
 
 	// Add
-	ComponentInstance add_component(Entity entity, ComponentType& component)
+	template <typename ComponentType, typename... Args>
+	ComponentInstance add_component(Entity entity, Args&&... args)
 	{
 		// create new instance
 		// TODO check recycled instances
 		ComponentInstance new_instance = component_data.size;
-		// assign new instance into data container
-		component_data.data->at(new_instance) = component;
+		// set instance index 
+		const auto it = component_data.data.begin() + new_instance;
+		// create object in place at index
+		component_data.data.emplace(it, args...);
 		// update internal references
 		entity_map.add(entity, new_instance);
 		// increment number of component instances
@@ -60,7 +59,7 @@ public:
 	ComponentType* get_component(Entity entity)
 	{
 		ComponentInstance instance = entity_map.get_instance(entity);
-		return &component_data.data->at(instance);
+		return &component_data.data.at(instance);
 	}
 
 private:

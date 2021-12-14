@@ -17,9 +17,9 @@ public:
 
 	// Add a component to the entity connected to the handle.
 	template <typename ComponentType, typename... Args>
-	void add_component(Args... args)
+	void add_component(Args&&... args)
 	{
-		world->add_component(entity, ComponentType(args...));
+		world->add_component<ComponentType>(entity, args...);
 	}
 
 	// Remove a component to the entity connected to the handle.

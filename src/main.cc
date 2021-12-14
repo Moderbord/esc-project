@@ -9,8 +9,6 @@ void test(World& world)
     EntityHandle e2 = world.create_entity();
 
     e2.add_component<Transform>(3, 4);
-
-    // TODO remove uneccessary deconstructor call
 }
 
 int main()
@@ -22,6 +20,10 @@ int main()
     test(world);
 
     EntityHandle e1 = world.create_entity();
+
+    ComponentHandle<Transform> h1 = world.component_handle<Transform>({ 1 });
+    h1->x += 5;
+    printf("End of main\n");
     
 
 
