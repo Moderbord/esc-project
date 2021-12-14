@@ -1,0 +1,12 @@
+#-----------------
+PROJECT(ecs)
+#-----------------
+
+INCLUDE_DIRECTORIES(${PROJECT_NAME} PRIVATE include)
+
+FILE(GLOB ecs_sources ${CMAKE_CURRENT_SOURCE_DIR}/*.cc)
+FILE(GLOB ecs_headers ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h)
+
+SOURCE_GROUP("Source Files" FILES ${ecs_sources} ${ecs_headers})
+
+ADD_LIBRARY(${PROJECT_NAME} STATIC ${ecs_sources} ${ecs_headers})
