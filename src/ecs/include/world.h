@@ -42,6 +42,24 @@ public:
 		return ComponentHandle<ComponentType>(entity, manager->get_component(entity), manager);
 	}
 
+	// Unpacks multiple component's data into specified component handles. Recursive case.
+	template <typename ComponentType, typename... Args>
+	void unpack_component(Entity entity, ComponentHandle<ComponentType>& handle, ComponentHandle<Args>&... args)
+	{
+		ComponentManager<ComponentType>* manager = get_component_manager<ComponentType>();
+		handle = ComponentHandle<ComponentType>(entity, manager->get_component(entity), manager);
+		// Recursive call
+		unpack_component(entity, args...);
+	}
+	
+	// Unpacks component data into specified component handle. Base case.
+	template <typename ComponentType>
+	void unpack_component(Entity entity, ComponentHandle<ComponentType>& handle)
+	{
+		ComponentManager<ComponentType>* manager = get_component_manager<ComponentType>();
+		handle = ComponentHandle<ComponentType>(entity, manager->get_component(entity), manager);
+	}
+
 	// Add a Component Manager to the World object
 	template<typename ComponentType>
 	void add_component_manager()

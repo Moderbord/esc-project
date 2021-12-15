@@ -47,5 +47,15 @@ struct Texture : Component<Texture>
 	int width;
 	int height;
 	int bpp;
+
+	Texture(int width=0, int height=0, int bpp=0) : width(width), height(height), bpp(bpp)
+	{
+		printf("Texture constructor\n");
+	}
+
+	~Texture()
+	{
+		printf("Texture deconstructor\n");
+	}
 };
 

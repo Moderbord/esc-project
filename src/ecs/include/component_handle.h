@@ -11,6 +11,7 @@ public:
 	ComponentType* component;
 	ComponentManager<ComponentType>* mgr;
 
+	ComponentHandle() : component(nullptr), mgr(nullptr) {};
 	ComponentHandle(Entity owner, ComponentType* component, ComponentManager<ComponentType>* manager)
 		: owner(owner), component(component), mgr(manager) {}
 	
