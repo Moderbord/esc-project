@@ -7,6 +7,9 @@
     <ClCompile Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\entity_mgr.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\system.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\world.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -31,6 +34,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\entity_mgr.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\sys_physics.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\system.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\world.h">

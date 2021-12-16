@@ -271,6 +271,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <ClCompile Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\component.cc" />
     <ClCompile Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\entity_mgr.cc" />
+    <ClCompile Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\system.cc" />
     <ClCompile Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\world.cc" />
     <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\component.h" />
     <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\component_handle.h" />
@@ -279,6 +280,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\entity_handle.h" />
     <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\entity_map.h" />
     <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\entity_mgr.h" />
+    <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\sys_physics.h" />
+    <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\system.h" />
     <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\world.h" />
   </ItemGroup>
   <ItemGroup>

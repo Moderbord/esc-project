@@ -25,13 +25,20 @@ static int get_component_family()
 
 
 /*-------------COMPONENTS------------*/
+struct Vec2
+{
+	float x;
+	float y;
+
+	inline Vec2& operator+=(const Vec2& vec) { this->x *= vec.x, this->y *= vec.y; return *this; }
+	inline Vec2 operator*(float val) const { return { x * val, y * val }; }
+};
 
 struct Transform : Component<Transform>
 {
-	int x;
-	int y;
+	Vec2 position;
 
-	Transform(int x=0, int y=0) : x(x), y(y)
+	Transform(float x=0, float y=0) : position({x, y})
 	{
 		printf("Transform constructor\n");
 	}
@@ -39,6 +46,22 @@ struct Transform : Component<Transform>
 	~Transform()
 	{
 		printf("Transform deconstructor\n");
+	}
+};
+
+struct Physics : Component<Physics>
+{
+	Vec2 linear_velocity;
+	Vec2 acceleration;
+
+	Physics(const Vec2& vel = { 0,0 }, const Vec2& acc = { 0,0 }) : linear_velocity(vel), acceleration(acc)
+	{
+		printf("Physics constructor\n");
+	}
+
+	~Physics()
+	{
+		printf("Physics deconstructor\n");
 	}
 };
 

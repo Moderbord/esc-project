@@ -3,15 +3,32 @@
 
 World::World(EntityManager* entity_manager) : entity_manager(entity_manager)
 {
-
+	component_managers.reserve(32);
 }
 
 void World::init()
 {
-	component_managers.reserve(32);
+	for (auto& system : systems)
+	{
+		system->register_world(this);
+		system->init();
+	}
+}
 
-	add_component_manager<Transform>();
-	add_component_manager<Texture>();
+void World::update(float dt)
+{
+	for (auto& system : systems)
+	{
+		system->update(dt);
+	}
+}
+
+void World::render()
+{
+	for (auto& system : systems)
+	{
+		system->render();
+	}
 }
 
 // Creates a new entity

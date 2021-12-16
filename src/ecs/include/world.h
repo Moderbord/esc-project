@@ -7,6 +7,7 @@
 #include "component.h"
 #include "entity.h"
 #include "entity_mgr.h"
+#include "system.h"
 
 struct EntityHandle;
 
@@ -15,6 +16,9 @@ class World
 public:
 	World(EntityManager* entity_manager);
 	void init();
+	void update(float dt);
+	void render();
+
 	EntityHandle create_entity();
 	void destroy_entity(Entity entity);
 
@@ -61,16 +65,25 @@ public:
 	}
 
 	// Add a Component Manager to the World object
-	template<typename ComponentType>
+	template<class ComponentType>
 	void add_component_manager()
 	{
 		const int component_family = get_component_family<ComponentType>();
 		const auto it = component_managers.begin() + component_family;
-		component_managers.emplace(it, std::make_unique<ComponentManager<ComponentType>>(ComponentManager<ComponentType>()));
+		auto ptr = std::make_unique<ComponentManager<ComponentType>>();
+		component_managers.insert(it, std::move(ptr));
+	}
+
+	template<class SystemType>
+	void add_system()
+	{
+		auto ptr = std::make_unique<SystemType>();
+		systems.push_back(std::move(ptr));
 	}
 
 private:
 	std::vector<std::unique_ptr<BaseComponentManager>> component_managers;
+	std::vector<std::unique_ptr<System>> systems;
 	EntityManager* entity_manager;
 
 	// Retrieves the Component Manager from the equivalent Component Type
