@@ -10,7 +10,6 @@ void World::init()
 {
 	for (auto& system : systems)
 	{
-		system->register_world(this);
 		system->init();
 	}
 }
@@ -35,6 +34,8 @@ void World::render()
 EntityHandle World::create_entity()
 {
 	Entity new_entity = entity_manager->create();
+	// Add component mask for entity
+	entity_masks.insert({ new_entity, ComponentMask() });
 	return { new_entity, this };
 }
 
@@ -44,4 +45,17 @@ void World::destroy_entity(Entity entity)
 	// Notify Entity Manager
 	entity_manager->recycle(entity);
 	// TODO remove entity from each comp manager
+}
+
+void World::update_entity_mask(Entity entity, ComponentMask new_mask, ComponentMask old_mask)
+{
+	for (auto& system : systems)
+	{
+		const ComponentMask system_mask = system->get_signature();
+
+		if (new_mask.matches(system_mask) && !old_mask.matches(system_mask))
+			system->register_entity(entity);
+		else if (!new_mask.matches(system_mask) && old_mask.matches(system_mask))
+			system->unregister_entity(entity);
+	}
 }

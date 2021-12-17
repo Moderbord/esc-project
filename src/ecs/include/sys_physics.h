@@ -7,8 +7,8 @@ class MotionSystem : public System
 public:
 	MotionSystem()
 	{
-		system_signature.set(1); // Transform
-		system_signature.set(7); // Physics
+		system_signature.add_component<Transform>();
+		system_signature.add_component<Physics>();
 	};
 
 	void update(float dt) override

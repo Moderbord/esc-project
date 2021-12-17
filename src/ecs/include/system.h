@@ -2,6 +2,7 @@
 #include <bitset>
 #include <vector>
 #include "entity.h"
+#include "component_mask.h"
 
 class World;
 
@@ -17,9 +18,10 @@ public:
 	void register_world(World* world);
 	void register_entity(Entity entity);
 	void unregister_entity(Entity entity);
+	ComponentMask get_signature();
 
 protected:
-	std::bitset<32> system_signature;
+	ComponentMask system_signature;
 	std::vector<Entity> registered_entities;
 	World* parent_world;
 };

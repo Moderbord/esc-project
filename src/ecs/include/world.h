@@ -1,10 +1,12 @@
 #pragma once
 #include <memory>
 #include <vector>
+#include <map>
 
 #include "component_mgr.h"
 #include "component_handle.h"
 #include "component.h"
+#include "component_mask.h"
 #include "entity.h"
 #include "entity_mgr.h"
 #include "system.h"
@@ -21,6 +23,7 @@ public:
 
 	EntityHandle create_entity();
 	void destroy_entity(Entity entity);
+	void update_entity_mask(Entity entity, ComponentMask new_mask, ComponentMask old_mask);
 
 	// Add component to target Entity
 	template<typename ComponentType, typename... Args>
@@ -28,6 +31,10 @@ public:
 	{
 		ComponentManager<ComponentType>* manager = get_component_manager<ComponentType>();
 		manager->add_component<ComponentType>(entity, args...);
+
+		const ComponentMask old_mask = entity_masks[entity];
+		const ComponentMask new_mask = entity_masks[entity].add_component<ComponentType>();
+		update_entity_mask(entity, new_mask, old_mask);
 	}
 
 	// Remove component from target Entity
@@ -36,6 +43,10 @@ public:
 	{
 		ComponentManager<ComponentType>* manager = get_component_manager<ComponentType>();
 		manager->destroy_component(entity);
+
+		const ComponentMask old_mask = entity_masks[entity];
+		const ComponentMask new_mask = entity_masks[entity].remove_component<ComponentType>();
+		update_entity_mask(entity, new_mask, old_mask);
 	}
 	
 	// Create a handle to manipulate an Entity with
@@ -78,12 +89,14 @@ public:
 	void add_system()
 	{
 		auto ptr = std::make_unique<SystemType>();
+		ptr->register_world(this);
 		systems.push_back(std::move(ptr));
 	}
 
 private:
 	std::vector<std::unique_ptr<BaseComponentManager>> component_managers;
 	std::vector<std::unique_ptr<System>> systems;
+	std::map<Entity, ComponentMask> entity_masks;
 	EntityManager* entity_manager;
 
 	// Retrieves the Component Manager from the equivalent Component Type

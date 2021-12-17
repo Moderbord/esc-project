@@ -4,6 +4,9 @@
     <ClCompile Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\component.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\component_mask.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\entity_mgr.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -19,6 +22,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\component_handle.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\component_mask.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\component_mgr.h">

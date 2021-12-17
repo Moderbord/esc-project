@@ -52,6 +52,7 @@ public:
 
 	void destroy_component(Entity entity)
 	{
+		// TODO destructor call?
 		ComponentInstance instance = entity_map.get_instance(entity);
 		entity_map.remove(entity);
 	}

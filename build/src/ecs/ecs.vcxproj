@@ -270,11 +270,13 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\component.cc" />
+    <ClCompile Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\component_mask.cc" />
     <ClCompile Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\entity_mgr.cc" />
     <ClCompile Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\system.cc" />
     <ClCompile Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\world.cc" />
     <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\component.h" />
     <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\component_handle.h" />
+    <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\component_mask.h" />
     <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\component_mgr.h" />
     <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\entity.h" />
     <ClInclude Include="C:\Users\GATE\Desktop\esc-proj\src\ecs\include\entity_handle.h" />

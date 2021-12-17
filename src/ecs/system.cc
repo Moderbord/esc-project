@@ -33,3 +33,8 @@ void System::unregister_entity(Entity entity)
 		}
 	}
 }
+
+ComponentMask System::get_signature()
+{
+	return system_signature;
+}
