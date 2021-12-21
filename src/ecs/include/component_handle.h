@@ -1,8 +1,9 @@
 #pragma once
-
 #include "component_mgr.h"
 #include "entity.h"
 
+namespace ECS
+{
 template <typename ComponentType>
 struct ComponentHandle
 {
@@ -20,3 +21,4 @@ public:
 	void destroy() { mgr->destroy_component(owner); }
 
 };
+} // end namespace

@@ -3,6 +3,8 @@
 #include <map>
 #include "entity.h"
 
+namespace ECS
+{
 const int MAX_COMPONENTS_PER_TYPE = 1024;
 typedef unsigned int ComponentInstance;
 
@@ -40,3 +42,4 @@ private:
 	std::map<Entity, ComponentInstance> entity_to_instance;
 	std::map<ComponentInstance, Entity> instance_to_entity;
 };
+} // end namespace

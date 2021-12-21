@@ -2,6 +2,8 @@
 #include <type_traits>
 #include <iostream>
 
+namespace ECS
+{
 struct ComponentCounter
 {
 	static int counter;
@@ -81,4 +83,4 @@ struct Texture : Component<Texture>
 		printf("Texture deconstructor\n");
 	}
 };
-
+} // end namespace

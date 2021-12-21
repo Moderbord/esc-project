@@ -2,6 +2,8 @@
 #include "system.h"
 #include "world.h"
 
+namespace ECS
+{
 class MotionSystem : public System
 {
 public:
@@ -27,3 +29,4 @@ public:
 
 private:
 };
+} // end namespace

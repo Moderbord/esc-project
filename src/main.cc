@@ -45,6 +45,4 @@ int main()
     }
 
     printf("End loop\n");
-
-    // TODO system registration
 }

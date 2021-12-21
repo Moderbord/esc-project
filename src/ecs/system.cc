@@ -1,5 +1,7 @@
 #include "system.h"
 
+namespace ECS
+{
 void System::init()
 {
 }
@@ -38,3 +40,5 @@ ComponentMask System::get_signature()
 {
 	return system_signature;
 }
+
+} // end namespace

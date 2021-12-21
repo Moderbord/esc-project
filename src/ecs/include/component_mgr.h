@@ -1,11 +1,11 @@
 #pragma once
 #include <array>
 #include <vector>
-
 #include "entity.h"
 #include "entity_map.h"
 
-
+namespace ECS
+{
 template <typename ComponentType>
 struct ComponentData
 {
@@ -67,3 +67,4 @@ private:
 	ComponentData<ComponentType> component_data;
 	EntityMap entity_map;
 };
+} // end namespace

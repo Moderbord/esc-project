@@ -1,6 +1,8 @@
 #pragma once
 #include "component.h"
 
+namespace ECS
+{
 struct ComponentMask
 {
 	unsigned int mask = 0;
@@ -21,3 +23,4 @@ struct ComponentMask
 		return { mask };
 	}
 };
+} // end namespace

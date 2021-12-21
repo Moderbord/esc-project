@@ -1,6 +1,8 @@
 #include "world.h"
 #include "entity_handle.h"
 
+namespace ECS
+{
 World::World(EntityManager* entity_manager) : entity_manager(entity_manager)
 {
 	component_managers.reserve(32);
@@ -59,3 +61,4 @@ void World::update_entity_mask(Entity entity, ComponentMask new_mask, ComponentM
 			system->unregister_entity(entity);
 	}
 }
+} // end namespace

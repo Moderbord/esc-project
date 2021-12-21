@@ -2,6 +2,8 @@
 #include "entity.h"
 #include "world.h"
 
+namespace ECS
+{
 struct EntityHandle
 {
 public:
@@ -29,3 +31,4 @@ public:
 	}
 	
 };
+} // end namespace

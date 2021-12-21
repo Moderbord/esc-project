@@ -6,6 +6,8 @@
 
 class World;
 
+namespace ECS
+{
 class System
 {
 public:
@@ -25,3 +27,4 @@ protected:
 	std::vector<Entity> registered_entities;
 	World* parent_world;
 };
+} // end namespace

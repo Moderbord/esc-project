@@ -13,6 +13,8 @@
 
 struct EntityHandle;
 
+namespace ECS
+{
 class World
 {
 public:
@@ -110,3 +112,5 @@ private:
 	}
 
 };
+
+} // end namespace

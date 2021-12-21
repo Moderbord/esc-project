@@ -1,5 +1,7 @@
 #include "entity_mgr.h"
 
+namespace ECS
+{
 // Creates a new Entity with new or recycled id.
 Entity EntityManager::create()
 {
@@ -19,4 +21,4 @@ void EntityManager::recycle(Entity entity)
 {
     free_ids.push_back(entity.id);
 }
-
+} // end namespace
